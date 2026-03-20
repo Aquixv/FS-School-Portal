@@ -4,7 +4,7 @@ const cors = require('cors');
 require('dotenv').config(); 
 require('./connection');
 
-const User = require('./models/User');
+const student = require('./models/Student');
 app.use(cors({
   origin: ["http://localhost:5173", ""],
   credentials: true
@@ -18,7 +18,7 @@ app.get('/health', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.send('QuizMaster API Live');
+    res.send('API Live');
 });
 
 app.listen(port, () => {
