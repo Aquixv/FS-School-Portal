@@ -1,4 +1,18 @@
-body{
+nav.container {
+    width: 100%;
+    padding: 20px 5%;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-start;
+    z-index: 10;
+}
+
+.logo {
+    width: 150px; 
+}
+/* body{
     display: flex;
     justify-content: center;
 }
@@ -11,8 +25,63 @@ body{
     padding: 20px;
     border-radius: 20px;
     position: relative;
-  }
+  } */
+body, .signin-page-wrapper {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #f4f7fe;
+    display: flex;
+    align-items: center;     
+    justify-content: center;  
+}
+label {
+    position: relative; 
+    display: flex;
+    align-items: center; 
+    width: 100%;
+}
 
+.input {
+    width: 100%; 
+    padding-right: 40px; 
+}
+.form { 
+   display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 450px; 
+}
+
+.input-container {
+    position: relative; 
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #999;
+    z-index: 5; 
+}
+
+.toggle-password:hover {
+    color: #4a86f7; 
+}
+
+.flex {
+    display: flex;
+    gap: 15px; 
+}
   .tittle {
     font-size: 28px;
     color: royalblue;
