@@ -25,11 +25,20 @@ body, .signin-page-wrapper {
     align-items: center;     
     justify-content: center;  
 }
+.error-text {
+    color: #ff4d4d;
+    font-size: 0.7rem;
+    position: absolute;
+    bottom: -18px;
+    left: 10px;
+}
+
 label {
     position: relative; 
     display: flex;
     align-items: center; 
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .input {
