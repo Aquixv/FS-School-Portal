@@ -35,9 +35,28 @@ const Signup = () => {
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required('Required'),
      }),
-     onSubmit: async (values) => {
-      console.log("Form Data:", values);
-    },
+     onSubmit: async (values, { setSubmitting, setStatus }) => {
+    try {
+        const response = await fetch('http://localhost:1500/api/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(values),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Signup Successful! Redirecting to Login...");
+            navigate('/signin');
+        } else {
+            alert(data.error);
+        }
+    } catch (error) {
+        alert("Connection failed. Is the server running?");
+    } finally {
+        setSubmitting(false);
+    }
+}
   });
   return (
     <>
