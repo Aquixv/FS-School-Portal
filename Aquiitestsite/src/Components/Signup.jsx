@@ -4,6 +4,7 @@ import { useState } from 'react';
 // import { Eye, EyeOff } from 'lucide-react';
 import logo from '../../src/assets/logo.png'
  import { useFormik } from 'formik';
+ import { toast } from 'react-toastify';
  import * as Yup from 'yup';
 import './Signup.css';
 const Signup = () => {
@@ -46,13 +47,14 @@ const Signup = () => {
         const data = await response.json();
 
         if (response.ok) {
-            alert("Signup Successful! Redirecting to Login...");
-            navigate('/signin');
+            toast.success(`Welcome to Edusity!, ${data.user.fullName}! 🎓`);
+            navigate('/dashboard');
         } else {
             alert(data.error);
         }
     } catch (error) {
-        alert("Connection failed. Is the server running?");
+      toast.error(data.error || "Something went wrong");
+        console.log("Connection failed. Is the server running?");
     } finally {
         setSubmitting(false);
     }

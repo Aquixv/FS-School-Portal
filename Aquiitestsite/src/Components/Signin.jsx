@@ -4,6 +4,7 @@ import logo from '../../src/assets/logo.png'
 // import { Eye, EyeOff } from 'lucide-react';
  import { useFormik } from 'formik';
  import * as Yup from 'yup';
+ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 const Signin = () => {
     const navigate = useNavigate();
@@ -26,9 +27,29 @@ const Signin = () => {
                   .oneOf([Yup.ref('password'), null], 'Passwords must match')
                   .required('Required'),
                }),
-               onSubmit: values => {
-                 console.log((values));
-               },
+               onSubmit: async (values) => {
+    try {
+        const response = await fetch('http://localhost:1500/api/signin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(values),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+
+            toast.success(`Welcome back, ${data.user.fullName}! 🎓`);
+            navigate('/dashboard'); 
+        } else {
+            toast.error(data.error || "Something went wrong");
+        }
+    } catch (error) {
+        alert("Login failed. Check your connection.");
+    }
+}
              });
   return (
     <>
