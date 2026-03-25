@@ -30,27 +30,38 @@ app.get('/signup', (req, res) => {
 app.get('/', (req, res) => {
     res.send('API Live');
 });
-app.post('/api/signup', async (req, res) => {
+app.post('/api/signin', async (req, res) => {
     try {
-        const { firstname, lastname, email, password } = req.body;
+        const { email, password } = req.body;
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+        // 1. Find the user
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ error: "User not found." });
+        }
 
-        // Generating a simple ID
-        const generatedId = "STU-" + Math.floor(1000 + Math.random() * 9000);
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ error: "Invalid credentials." });
+        }
 
-        const newUser = new User({
-            fullName: `${firstname} ${lastname}`,
-            email,
-            password: hashedPassword,
-            studentId: generatedId, 
-            role: 'student'
+        const token = jwt.sign(
+            { id: user._id, role: user.role }, 
+            process.env.JWT_SECRET || 'your_secret_key', 
+            { expiresIn: '1d' }
+        );
+        res.json({
+            token,
+            user: {
+                id: user._id,
+                fullName: user.fullName,
+                studentId: user.studentId,
+                role: user.role
+            }
         });
 
-        await newUser.save();
-        res.status(201).json({ message: "Student registered!" });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: "Server error during signin." });
     }
 });
 app.post('/api/signup', async (req, res) => {

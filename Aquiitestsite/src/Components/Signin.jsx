@@ -6,7 +6,7 @@ import logo from '../../src/assets/logo.png'
  import * as Yup from 'yup';
  import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-const Signin = () => {
+const Signin = ({onLoginSuccess}) => {
     const navigate = useNavigate();
       const[sticky, setSticky] = useState(false);
        const [showPassword, setShowPassword] = useState(false);
@@ -27,30 +27,27 @@ const Signin = () => {
                   .oneOf([Yup.ref('password'), null], 'Passwords must match')
                   .required('Required'),
                }),
-               onSubmit: async (values) => {
-    try {
-        const response = await fetch('http://localhost:1500/api/signin', {
-            method: 'POST',
+onSubmit: async (values) => {
+    
+    const response = await fetch('http://localhost:1500/api/signin',
+         {  method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(values),
-        });
+         });
+    const data = await response.json();
 
-        const data = await response.json();
+    if (response.ok) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        onLoginSuccess(data.user); 
 
-        if (response.ok) {
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user));
-
-            toast.success(`Welcome back, ${data.user.fullName}! 🎓`);
-            navigate('/dashboard'); 
+        toast.success(`Welcome back, ${data.user.fullName}!`);
+        navigate('/dashboard');
         } else {
             toast.error(data.error || "Something went wrong");
         }
-    } catch (error) {
-        alert("Login failed. Check your connection.");
-    }
-}
-             });
+    } 
+});
   return (
     <>
     <div className='signin-page-wrapper'>
