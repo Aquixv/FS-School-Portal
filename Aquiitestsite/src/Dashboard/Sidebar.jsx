@@ -15,15 +15,16 @@ const Sidebar = ({ user }) => {
         <h1 className="text-2xl font-black text-blue-700">Edusity Portal</h1>
       </div>
       
-      <div className="flex items-center space-x-3 px-2 py-4 mb-6">
-        <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center font-bold text-blue-700">
-          {user?.fullName?.charAt(0)}
-        </div>
-        <div>
-          <p className="font-bold text-slate-800 leading-none">{user?.fullName || 'Student'}</p>
-          <p className="text-xs text-slate-500">ID: {user?.studentId || '2024-0000'}</p>
-        </div>
-      </div>
+     
+<div className="flex items-center space-x-3 px-2 py-6 mb-8 border-b border-slate-100">
+  <div className="CVV w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center font-bold text-blue-700 shadow-sm">
+    {user?.fullName?.charAt(0)}
+  </div>
+  <div className="overflow-hidden">
+    <p className="font-bold text-slate-800 text-sm truncate">{user?.fullName}</p>
+    <p className="text-[10px] text-slate-400 font-mono tracking-tighter">ID: {user?.studentId || '2026-000'}</p>
+  </div>
+</div>
 
       <nav className="flex-grow space-y-1">
         {navItems.map((item) => (

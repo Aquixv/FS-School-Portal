@@ -91,6 +91,19 @@ app.post('/api/signup', async (req, res) => {
         res.status(500).json({ error: "Server error. Please try again later." });
     }
 });
+app.put('/api/user/update', async (req, res) => {
+    const { userId, phoneNumber, bio } = req.body;
+    try {
+        const updatedUser = await User.findByIdAndUpdate(
+            userId, 
+            { $set: { "studentDetails.phone": phoneNumber, "studentDetails.bio": bio } },
+            { new: true } // Returns the updated document
+        );
+        res.json(updatedUser);
+    } catch (err) {
+        res.status(500).json({ error: "Update failed" });
+    }
+});
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });

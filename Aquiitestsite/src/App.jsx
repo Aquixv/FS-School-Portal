@@ -7,7 +7,7 @@ import Signin from './Components/Signin';
 import Dashboard from './Components/Dashboard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ProtectedRoute from './Components/Protectedroutes';
+// import ProtectedRoute from './Components/Protectedroutes';
 import Sidebar from './Dashboard/Sidebar';
 import DashboardLayout from './Components/DashboardLayout';
 
@@ -22,7 +22,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="flex">
+      <div className="flex bg-slate-50 min-h-screen">
         {user && isDashboard && <Sidebar user={user} />}
 
         <div className={`flex-1 ${user && isDashboard ? 'md:pl-0' : ''}`}>
