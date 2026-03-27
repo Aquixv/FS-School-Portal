@@ -51,7 +51,7 @@ onSubmit: async (values) => {
   return (
     <>
     <div className='signin-page-wrapper'>
-    <nav className= {`container ${sticky? 'dark-nav':''}`}>
+    <nav className={`landing-nav container ${sticky ? 'dark-nav' : ''}`}>
         <img src={logo} alt="" className='logo'/>
         </nav>
     <form onSubmit={formik.handleSubmit} className="form">

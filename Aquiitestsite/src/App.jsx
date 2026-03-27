@@ -13,39 +13,40 @@ import DashboardLayout from './Components/DashboardLayout';
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const handleLoginSuccess = (userData) => {
-    setUser(userData);
-  };
-
-  const isDashboard = window.location.pathname.startsWith('/dashboard');
+  const handleLoginSuccess = (userData) => setUser(userData);
 
   return (
     <BrowserRouter>
-      <div className="flex bg-slate-50 min-h-screen">
-        {user && isDashboard && <Sidebar user={user} />}
-
-        <div className={`flex-1 ${user && isDashboard ? 'md:pl-0' : ''}`}>
-          <Routes>
-  <Route path="/" element={<Home />} />
-  <Route path="/signin" element={<Signin onLoginSuccess={handleLoginSuccess} />} />
-
-  <Route 
-    path="/dashboard" 
-    element={
-      user ? (
-        <DashboardLayout user={user}>
-          <Dashboard user={user} />
-        </DashboardLayout>
-      ) : (
-        <Navigate to="/signin" />
-      )
-    } 
-  />
-</Routes>
-          <ToastContainer position="top-right" autoClose={3000} theme="colored" />
-        </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<Signin onLoginSuccess={handleLoginSuccess} />} />
+        <Route path="/signup" element={<Signup onLoginSuccess={handleLoginSuccess} />} />
+        
+        <Route path="/dashboard" 
+  element={
+    user ? (
+      <div className="min-h-screen bg-slate-50">
+        <Sidebar user={user} isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+        <button 
+  onClick={() => setIsSidebarOpen(true)}
+  // Added z-[60] to stay above TopBar and !block to ensure it shows
+  className="md:hidden fixed top-4 left-4 z-[60] p-2 bg-blue-600 text-white rounded-lg shadow-lg"
+>
+  <span className="material-symbols-outlined">menu</span>
+</button>
+<div className="md:ml-64 min-h-screen">
+  <Dashboard user={user} />
+</div>
       </div>
+    ) : (
+      <Navigate to="/signin"/>
+    )
+  } 
+/>
+      </Routes>
+      <ToastContainer position="top-right" autoClose={3000} theme="colored" />
     </BrowserRouter>
   );
 }

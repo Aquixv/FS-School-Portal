@@ -1,46 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-*{
-margin: 0;
-padding: 0;
-font-family: 'Outfit', sans-serif;
-box-sizing: border-box;
-}
-body{
-  background-color: #f5f5f5;
-}
-a{
-text-decoration: none;
-color: inherit;
-line-height: 1;
-cursor: pointer;
-}
-.container{
-padding-left: 10%;
-padding-right: 10%;
-}
-.btn{
-background: white;
-color: #212121;
-padding: 14px 25px;
-font-size: 16px;
-border-radius: 30px;
-cursor: pointer;
-border: 0;
-outline: 0;
-display: inline-flex;
-align-items: center;
-justify-content: center;
-}
-.btn img{
-width: 20px;
-margin-left: 8px;
-}
-@media (max-width:1200px) {
-    .container{
-    padding-left: 5%;
-    padding-right: 5%;
-    }
-    .btn{
-    padding: 14px 22px;
-    }
+/* src/index.css */
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2858b2;
+  --color-primary-container: #759efd;
+  --color-on-surface: #2c2f30;
+  --color-on-surface-variant: #595c5d;
+  --color-surface-container-low: #eff1f2;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-highest: #dadddf;
+  --color-surface-container-high: #e0e3e4;
+  --color-tertiary: #a83206;
+  --color-tertiary-container: #ff9473;
+
+  --font-headline: "Manrope", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
 }

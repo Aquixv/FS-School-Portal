@@ -1,4 +1,4 @@
-nav.container {
+.landing-nav .container {
     width: 100%;
     padding: 20px 5%;
     position: absolute; 
@@ -26,7 +26,7 @@ nav.container {
     border-radius: 20px;
     position: relative;
   } */
-body, .signin-page-wrapper {
+.signup-page-wrapper {
     margin: 0;
     padding: 0;
     min-height: 100vh;

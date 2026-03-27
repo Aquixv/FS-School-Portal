@@ -11,7 +11,7 @@ const Hero = () => {
     <div className='hero-text'>
       <h1>Empowering Minds, Shaping Futures: Where Tradition Meets Innovation</h1>
       <p>Join a global community of scholars dedicated to rigorous research, creative expression, and social responsibility</p>
-     <Link to="/Signup"><button className='btn'>Join Us <img src={dark_arrow} alt="arrow" /></button>
+     <Link to="/signup"><button className='btn'>Join Us <img src={dark_arrow} alt="arrow" /></button>
       </Link>
     </div>
     </div>

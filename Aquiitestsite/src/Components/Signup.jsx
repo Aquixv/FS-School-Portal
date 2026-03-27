@@ -63,7 +63,7 @@ const Signup = () => {
   return (
     <>
     <div className="signup-page-wrapper">
-    <nav className= {`container ${sticky? 'dark-nav':''}`}>
+    <nav className={`landing-nav container ${sticky ? 'dark-nav' : ''}`}>
             <img src={logo} alt="" className='logo'/>
             </nav>
       <form onSubmit={formik.handleSubmit} className="form">

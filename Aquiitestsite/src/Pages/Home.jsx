@@ -8,12 +8,15 @@ import Testimonials from '../Components/Testimonials';
 import Contact from '../Components/Contact';
 import VideoPlayer from '../Components/VideoPlayer';
 import './Home.css'
+import Navbar from '../Components/Navbar';
 
 const Home = () => {
   const [playState, SetPlayState] = useState(false);
 
   return (
     <>
+    <div className="landing-page-wrapper">
+    <Navbar/>
       <Hero />
       <div className='container'>
         <Title subTitle='Our Program' title='What We Offer' />
@@ -25,6 +28,7 @@ const Home = () => {
         <Testimonials />
         <Title subTitle='Contact Us' title='Reach us at' />
         <Contact />
+      </div>
       </div>
       <VideoPlayer playState={playState} SetPlayState={SetPlayState} />
     </>

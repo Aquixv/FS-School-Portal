@@ -1,3 +1,42 @@
-Title{
-    display: none;
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+/* 1. Only apply these to the landing page wrapper */
+.landing-page-wrapper {
+  background-color: #f5f5f5;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* 2. CAGE the universal selector so it ONLY hits landing page items */
+.landing-page-wrapper * {
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* 3. CAGE the container so it doesn't squish the dashboard */
+.landing-page-wrapper .container {
+  padding-left: 10% !important;
+  padding-right: 10% !important;
+  max-width: none !important; /* Prevents Tailwind from capping the width */
+}
+
+/* 4. CAGE the buttons */
+.landing-page-wrapper .btn {
+  background: white;
+  color: #212121;
+  padding: 14px 25px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.landing-page-wrapper .btn img{
+width: 20px;
+margin-left: 8px;
+}
+@media (max-width: 1200px) {
+    .landing-page-wrapper .container {
+      padding-left: 5% !important;
+      padding-right: 5% !important;
+    }
 }
