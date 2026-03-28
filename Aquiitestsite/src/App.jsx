@@ -10,6 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 // import ProtectedRoute from './Components/Protectedroutes';
 import Sidebar from './Dashboard/Sidebar';
 import DashboardLayout from './Components/DashboardLayout';
+import Grades from './Dashboard/Grades';
+import TopBar from './Dashboard/Topbar';
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
@@ -24,24 +26,26 @@ function App() {
         <Route path="/signin" element={<Signin onLoginSuccess={handleLoginSuccess} />} />
         <Route path="/signup" element={<Signup onLoginSuccess={handleLoginSuccess} />} />
         
-        <Route path="/dashboard" 
+        <Route 
+  path="/dashboard/*" 
   element={
     user ? (
-      <div className="min-h-screen bg-slate-50">
-        <Sidebar user={user} isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
-        <button 
-  onClick={() => setIsSidebarOpen(true)}
-  // Added z-[60] to stay above TopBar and !block to ensure it shows
-  className="md:hidden fixed top-4 left-4 z-[60] p-2 bg-blue-600 text-white rounded-lg shadow-lg"
->
-  <span className="material-symbols-outlined">menu</span>
-</button>
-<div className="md:ml-64 min-h-screen">
-  <Dashboard user={user} />
-</div>
+      <div className="min-h-screen bg-slate-50 flex">
+        <Sidebar user={user} />
+        
+        <div className="flex-1 md:ml-64 flex flex-col">
+          <TopBar user={user} /> 
+          
+          <main className="pt-24 pb-12 px-8">
+            <Routes>
+              <Route path="/" element={<Dashboard user={user} />} />
+              <Route path="/grades" element={<Grades user={user} />} />
+            </Routes>
+          </main>
+        </div>
       </div>
     ) : (
-      <Navigate to="/signin"/>
+      <Navigate to="/signin" />
     )
   } 
 />

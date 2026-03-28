@@ -97,7 +97,7 @@ app.put('/api/user/update', async (req, res) => {
         const updatedUser = await User.findByIdAndUpdate(
             userId, 
             { $set: { "studentDetails.phone": phoneNumber, "studentDetails.bio": bio } },
-            { new: true } // Returns the updated document
+            { new: true } 
         );
         res.json(updatedUser);
     } catch (err) {
@@ -107,4 +107,3 @@ app.put('/api/user/update', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
-// If e reac your turn, no statpad
