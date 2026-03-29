@@ -107,4 +107,4 @@ app.put('/api/user/update', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
-//Wrong name: Was to be Grades Implementation
+// To continue this or not? IDK tbh
