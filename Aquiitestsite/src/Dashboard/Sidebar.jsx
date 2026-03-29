@@ -47,7 +47,7 @@ const Sidebar = ({ user, isOpen, setIsOpen }) => {
         <Link
           key={item.name}
           to={item.path}
-          onClick={() => setIsOpen(false)} // Close sidebar on mobile after clicking
+          onClick={() => setIsOpen(false)} 
           className={`flex items-center space-x-3 p-3 rounded-xl transition-all ${
             location.pathname === item.path 
               ? 'bg-blue-50 text-blue-700 font-bold' 

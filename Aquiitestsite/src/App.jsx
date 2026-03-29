@@ -12,6 +12,9 @@ import Sidebar from './Dashboard/Sidebar';
 import DashboardLayout from './Components/DashboardLayout';
 import Grades from './Dashboard/Grades';
 import TopBar from './Dashboard/Topbar';
+import Assignments from './Dashboard/Assignments';
+import Courses from './Dashboard/Courses';
+import Calendar from './Dashboard/Calendar';
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
@@ -40,6 +43,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard user={user} />} />
               <Route path="/grades" element={<Grades user={user} />} />
+              <Route path="/assignments" element={<Assignments user={user} />} />
+              <Route path="/courses" element={<Courses user={user} />} />
+              <Route path="/calendar" element={<Calendar user={user} />} />
             </Routes>
           </main>
         </div>
